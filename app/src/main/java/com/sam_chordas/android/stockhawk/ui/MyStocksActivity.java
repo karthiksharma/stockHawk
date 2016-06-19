@@ -52,7 +52,8 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
   private static final int CURSOR_LOADER_ID = 0;
   private QuoteCursorAdapter mCursorAdapter;
   private Context mContext;
-  private Cursor mCursor;
+//  private Cursor mCursor;
+  private TextView empty_list;
   boolean isConnected;
 
   @Override
@@ -66,6 +67,8 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     isConnected = activeNetwork != null &&
         activeNetwork.isConnectedOrConnecting();
     setContentView(R.layout.activity_my_stocks);
+    empty_list = (TextView) findViewById(R.id.empty_list_text);
+
     // The intent service is for executing immediate pulls from the Yahoo API
     // GCMTaskService can only schedule tasks, they cannot execute immediately
     mServiceIntent = new Intent(this, StockIntentService.class);
@@ -74,7 +77,9 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
       mServiceIntent.putExtra(getResources().getString(R.string.str_tag), getResources().getString(R.string.str_init));
       if (isConnected){
         startService(mServiceIntent);
+        empty_list.setVisibility(View.GONE);
       } else{
+        empty_list.setVisibility(View.VISIBLE);
         networkToast();
       }
     }
@@ -219,7 +224,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
   @Override
   public void onLoadFinished(Loader<Cursor> loader, Cursor data){
     mCursorAdapter.swapCursor(data);
-    mCursor = data;
+//    mCursor = data;
   }
 
   @Override

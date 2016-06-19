@@ -17,4 +17,8 @@
     <string name="record_exist" translatable="true">This stock is already saved!</string>
     <string name="str_init" translatable="false">init</string>
     <string name="error" translatable="false">Error</string>
+    <string name="appwidget_text" translatable="false">EXAMPLE</string>
+    <string name="add_widget" translatable="false">Add widget</string>
+    <string name="widget_title" translatable="false">Stocks List</string>
+    <string name="fab_cd_text" translatable="false">Add New Stock Item</string>
 </resources>
